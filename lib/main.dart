@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:xpends/models/transaction.dart';
 
 void main(List<String> args) => runApp(Xpends());
 
@@ -10,6 +11,21 @@ class Xpends extends StatelessWidget {
 }
 
 class MyHomePage extends StatelessWidget {
+  final _transactions = [
+    transactions(
+      id: 1,
+      title: "Conta de luz",
+      value: 180.90,
+      date: DateTime.now(),
+    ),
+    transactions(
+      id: 2,
+      title: "Conta de Internet",
+      value: 121.19,
+      date: DateTime.now(),
+    )
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,6 +33,8 @@ class MyHomePage extends StatelessWidget {
           title: Text("Minhas Despesas"),
         ),
         body: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             Container(
               width: double.infinity,
@@ -26,8 +44,12 @@ class MyHomePage extends StatelessWidget {
                 elevation: 5,
               ),
             ),
-            Card(
-              child: Text("Aqui ficará a lista de despesas"),
+            Column(
+              children: _transactions.map((trans) {
+                return Card(
+                  child: Text(trans.title),
+                );
+              }).toList(),
             )
           ],
         ));
