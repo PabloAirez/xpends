@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 import 'package:xpends/models/transaction.dart';
 
@@ -47,8 +49,19 @@ class MyHomePage extends StatelessWidget {
             Column(
               children: _transactions.map((trans) {
                 return Card(
-                  child: Text(trans.title),
-                );
+                    child: Row(
+                  children: <Widget>[
+                    Container(
+                      child: Text(trans.value.toString()),
+                    ),
+                    Column(
+                      children: <Widget>[
+                        Text(trans.title),
+                        Text(trans.date.toString())
+                      ],
+                    )
+                  ],
+                ));
               }).toList(),
             )
           ],
